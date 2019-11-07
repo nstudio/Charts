@@ -205,6 +205,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
             return _data
         }
         set {
+             NSLog("Woo Hoo Data Set");
              _data = newValue
                         _offsetsCalculated = false
 
