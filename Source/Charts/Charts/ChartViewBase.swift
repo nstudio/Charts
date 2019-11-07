@@ -205,7 +205,28 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
             return _data
         }
         set {
-            data = newValue
+             _data = newValue
+                        _offsetsCalculated = false
+
+                        guard let _data = _data else
+                        {
+                            setNeedsDisplay()
+                            return
+                        }
+
+                        // calculate how many digits are needed
+                        setupDefaultFormatter(min: _data.getYMin(), max: _data.getYMax())
+
+                        for set in _data.dataSets
+                        {
+                            if set.needsFormatter || set.valueFormatter === _defaultValueFormatter
+                            {
+                                set.valueFormatter = _defaultValueFormatter
+                            }
+                        }
+
+                        // let the chart know there is new data
+                        notifyDataSetChanged()
         }
     }
 
