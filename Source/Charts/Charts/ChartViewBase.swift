@@ -198,7 +198,17 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     }
     
     // MARK: - ChartViewBase
-    
+
+    @objc open var NativeScriptData: ChartData?
+    {
+        get {
+            return _data
+        }
+        set {
+            data = newValue
+        }
+    }
+
     /// The data for the chart
     @objc open var data: ChartData?
     {
