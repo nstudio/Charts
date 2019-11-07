@@ -200,7 +200,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     // MARK: - ChartViewBase
     
     /// The data for the chart
-    open var data: ChartData?
+    @objc open var data: ChartData?
     {
         get
         {
