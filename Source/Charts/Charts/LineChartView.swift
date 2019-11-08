@@ -22,7 +22,7 @@ open class LineChartView: BarLineChartViewBase, LineChartDataProvider
         renderer = LineChartRenderer(dataProvider: self, animator: _animator, viewPortHandler: _viewPortHandler)
     }
 
-   @objc open func setData(_ lineData: LineChartData) {
+   @objc open func setNewData(_ lineData: LineChartData) {
         data = lineData
    }
 
