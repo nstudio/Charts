@@ -22,19 +22,39 @@ open class LineChartView: BarLineChartViewBase, LineChartDataProvider
         renderer = LineChartRenderer(dataProvider: self, animator: _animator, viewPortHandler: _viewPortHandler)
     }
 
+   open var nativescriptData: LineChartData?
+   open func assignNativeScriptData() {
+     NSLog("Assigning data")
+     self.data = self.nativescriptData;
+   }
+
+   open func setNewestData(lineData: LineChartData) {
+           self.data = lineData
+   }
+
+   open func setNData(_ lineData: LineChartData) {
+            self.data = lineData
+    }
+
+
+   @objc open func setNewerData(lineData: LineChartData) {
+        self.data = lineData
+   }
+
+
    @objc open func setNewData(_ lineData: LineChartData) {
-        data = lineData
+        self.data = lineData
    }
 
     // MARK: - LineChartDataProvider
     
-    open var lineData: LineChartData? {
+    @objc open var lineData: LineChartData? {
             get {
                 return _data as? LineChartData
             }
             set {
                  NSLog("NativeScriptData set from LineData")
-                 data = newValue
+                 self.data = newValue
             }
     }
 }
