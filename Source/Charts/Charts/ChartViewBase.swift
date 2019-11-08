@@ -199,35 +199,19 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     
     // MARK: - ChartViewBase
 
+   @objc open func setData(chartData: ChartData) {
+        data = chartData
+   }
+
+
     @objc open var NativeScriptData: ChartData?
     {
         get {
             return _data
         }
         set {
-             NSLog("Woo Hoo Data Set");
-             _data = newValue
-                        _offsetsCalculated = false
-
-                        guard let _data = _data else
-                        {
-                            setNeedsDisplay()
-                            return
-                        }
-
-                        // calculate how many digits are needed
-                        setupDefaultFormatter(min: _data.getYMin(), max: _data.getYMax())
-
-                        for set in _data.dataSets
-                        {
-                            if set.needsFormatter || set.valueFormatter === _defaultValueFormatter
-                            {
-                                set.valueFormatter = _defaultValueFormatter
-                            }
-                        }
-
-                        // let the chart know there is new data
-                        notifyDataSetChanged()
+             NSLog("NativeScriptData set")
+             data = newValue
         }
     }
 
@@ -240,6 +224,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
         }
         set
         {
+            NSLog("Data set")
             _data = newValue
             _offsetsCalculated = false
             
