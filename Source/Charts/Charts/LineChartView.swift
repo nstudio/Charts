@@ -22,30 +22,6 @@ import CoreGraphics
         renderer = LineChartRenderer(dataProvider: self, animator: _animator, viewPortHandler: _viewPortHandler)
     }
 
-   @objc open var nativescriptData: LineChartData?
-   @objc open func assignnativescriptData() {
-     NSLog("Assigning data")
-     self.data = self.nativescriptData;
-   }
-
-   open func setNewestData(lineData: LineChartData) {
-           self.data = lineData
-   }
-
-   open func setNData(_ lineData: LineChartData) {
-            self.data = lineData
-    }
-
-
-   @objc open func setNewerData(lineData: LineChartData) {
-        self.data = lineData
-   }
-
-
-   @objc open func setNewData(_ lineData: LineChartData) {
-        self.data = lineData
-   }
-
     // MARK: - LineChartDataProvider
     
     @objc open var lineData: LineChartData? {
@@ -53,7 +29,6 @@ import CoreGraphics
                 return _data as? LineChartData
             }
             set {
-                 NSLog("NativeScriptData set from LineData")
                  self.data = newValue
             }
     }

@@ -199,22 +199,6 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     
     // MARK: - ChartViewBase
 
-   @objc open func setData(chartData: ChartData) {
-        data = chartData
-   }
-
-
-    @objc open var NativeScriptData: ChartData?
-    {
-        get {
-            return _data
-        }
-        set {
-             NSLog("NativeScriptData set")
-             data = newValue
-        }
-    }
-
     /// The data for the chart
     @objc open var data: ChartData?
     {
@@ -224,7 +208,6 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
         }
         set
         {
-            NSLog("Data set")
             _data = newValue
             _offsetsCalculated = false
             
@@ -597,13 +580,15 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     /// draws all MarkerViews on the highlighted positions
     internal func drawMarkers(context: CGContext)
     {
+        NSLog("In Draw Marker");
         // if there is no marker view or drawing marker is disabled
         guard
             let marker = marker
             , isDrawMarkersEnabled &&
                 valuesToHighlight()
             else { return }
-        
+
+        NSLog("Finding Highlights");
         for i in 0 ..< _indicesToHighlight.count
         {
             let highlight = _indicesToHighlight[i]
@@ -627,9 +612,11 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
                 continue
             }
 
+            NSLog("Refresh Content")
             // callbacks to update the content
             marker.refreshContent(entry: e, highlight: highlight)
-            
+
+            NSLog("Drawing");
             // draw the marker
             marker.draw(context: context, point: pos)
         }
